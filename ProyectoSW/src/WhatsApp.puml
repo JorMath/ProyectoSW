@@ -20,14 +20,85 @@ class AppServidor{
     -socketCliente: void
     -server
 }
+
 class EnviarRunnable implements Runnable{
+    -socket: Socket
+    -Usuario: Usuario
+    +run(): void
+    +EnviarRunnable(socket Socket, usuario Usuario): EnviarRunnable
+}
+
+class RecibirRunnable{
+    -socket: Socket
+    +run(): void
+    +RecibirRunnable(socket Socket): RecibirRunnable
+}
+
+class Usuario{
+    -nombre: String
+    -numTelefono: String
+    -usuariosAmigos: ArrayList<Usuario>
+    +Usuario(nombre:String , numTelefono: String): Usuario
+    +agregarAmigo(usuario: Usuario): void
+    +salirDeGrupo(grupo: Grupo): void
+}
+
+class Grupo{
+    -usuarios: ArrayList<Usuario>
+    -conversacion: Conversacion
+    -fechaDeCreacion: Date
+    +agregarUsuario(nuevoParticipante: Usuario): void
+    +eliminarUsuario(participante: Usuario): void
 
 }
-class RecibirRunnable{}
-class Usuario{}
-class Conversacion{}
-class Mensaje{}
-class Llamada{}
 
+class Conversacion{
+    -fechaInicio: Date
+    -mensajes: ArrayList<Mensaje>
+    -usuarios: ArrayList<Usuario>
+    +Conversacion(emisor: Usuario, receptor: Usuario): Conversacion
+    +Conversacion(usuario ... Usuario): Conversacion
+    +agregarUsuario(nuevoParticipante: Usuario): void
+    +eliminarUsuario(participante: Usuario): void
+
+}
+class Mensaje{
+    -usuario: Usuario
+    -contenido: Object
+    -fechaInicio: Date
+    +Mensaje(usuario: Usuario, contenido: Object)
+    +toString(): String
+    +editarMensaje(): void
+    +eliminarMensaje(): void
+}
+
+class Llamada{
+    -usuarios: ArrayList<Usuario>
+    -fechaInicio: Date
+    -fechaFinalizacion: Date
+    -duracion: float
+    -calcularDuracion(): float
+    +Llamada(emisor: Usuario, receptor: Usuario, tipoLlamada: TipoLlamada): Llamada
+    +agregarUsuario(nuevoParticipante: Usuario): void
+    +cambiarTipoDeLlamada(tipoLlamada: TipoLlamada): void
+    +iniciarLlamada(): void
+    +finalizarLlamada(): void
+    +prenderMicrofono():
+    +apagarMicrofono():
+    +prenderCamara():
+    +apagarCamara():
+}
+
+class Momento{
+    -fechaInicio: Date
+    -contenido: Object
+    -descripcion: String
+    +Momento(contenido: Object, descripcion: String);
+    +Momento(contenido: Object);
+    +subirMomento(): void
+    +eliminarMomento(): void
+    +modificarMomento(): void
+
+}
 
 @enduml

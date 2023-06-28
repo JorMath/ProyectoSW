@@ -12,10 +12,6 @@ public class Usuario {
         this.nombre = nombre;
         this.numTelefono = numTelefono;
     }
-    public Usuario(){
-
-    }
-
 
     public ArrayList<Usuario> retornarAmigos(Usuario usuarioPrincipal){
         return  usuarioPrincipal.usuariosAmigos;
