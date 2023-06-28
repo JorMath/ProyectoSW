@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class AppCliente implements Conexion{
+    -socketCliente: Socket
+    -usuario: Usuario
+    +ingresarDatos(): void
+    +conexion(): void
+}
+
+interface Conexion{
+    conexion(): void
+}
+
+interface Registrarce(){
+    ingresarDatos(): void
+}
+
+class AppServidor{
+    -socketCliente: void
+    -server
+}
+class EnviarRunnable implements Runnable{
+
+}
+class RecibirRunnable{}
+class Usuario{}
+class Conversacion{}
+class Mensaje{}
+class Llamada{}
+
+
+@enduml
