@@ -1,9 +1,6 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -17,6 +14,7 @@ public class AppServidor implements Conexion{
         ingresarDatos();
         AppServidor servidor = new AppServidor();
         servidor.conexion();
+        
     }
 
     private static void ingresarDatos() {
@@ -33,7 +31,7 @@ public class AppServidor implements Conexion{
     public void conexion() {
 
         try {
-            serverSocket = new ServerSocket(1449);
+            socketServidor = new ServerSocket(1449);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -41,13 +39,21 @@ public class AppServidor implements Conexion{
             // Aceptar nueva conexión de cliente
             Socket clientSocket = null;
             try {
-                clientSocket = serverSocket.accept();
+                clientSocket = socketServidor.accept();
                 if (clientSocket.isConnected()) {
                     System.out.println("Conexion exitosa");
+                    Thread hiloEnviar = new Thread(new EnviarRunnable(clientSocket, usuario));
+                    Thread hiloRecibir = new Thread(new RecibirRunnable(clientSocket));
+
+                    hiloEnviar.start();
+                    hiloRecibir.start();
                 }
+
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
+
     }
 }
