@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 
-public class AppCliente {
+public class AppCliente implements Conexion, Registrarse{
 
     //Variables a usar
     static Socket socketCliente ;
@@ -15,6 +15,11 @@ public class AppCliente {
     //static String numTelefono;
 
     public static void main(String[] args) {
+        AppCliente cliente = new AppCliente();
+        cliente.conexion();
+    }
+    @Override
+    public Usuario ingresarDatos(){
         String nombre = "";
         System.out.println("Ingrese su nombre");
         Scanner scanner = new Scanner(System.in);
@@ -23,6 +28,12 @@ public class AppCliente {
         System.out.println("Ingrese su numero de telefono");
         numTelefono = scanner.nextLine();
         usuario = new Usuario(nombre,numTelefono);
+        return usuario;
+    }
+    @Override
+    public void conexion(){
+        AppCliente cliente = new AppCliente();
+        usuario = cliente.ingresarDatos();
         try {
             socketCliente = new Socket("127.0.0.1", 1449);
             if (socketCliente.isConnected()){
@@ -31,15 +42,11 @@ public class AppCliente {
         } catch (Exception e) {
 
         }
-
         Thread hiloEnviar = new Thread(new EnviarRunnable(socketCliente, usuario));
         Thread hiloRecibir = new Thread(new RecibirRunnable(socketCliente));
 
         hiloEnviar.start();
         hiloRecibir.start();
-    }
-    public static void conexion(){
-
     }
 
 }

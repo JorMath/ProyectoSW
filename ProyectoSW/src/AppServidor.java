@@ -4,20 +4,19 @@ import java.net.Socket;
 import java.util.Scanner;
 
 
-public class AppServidor implements Conexion{
-    //static String nombre = "";
-    //static String numTelefono;
-    static ServerSocket serverSocket = null;
+public class AppServidor implements Conexion, Registrarse{
+    static ServerSocket socketServidor = null;
     static Usuario usuario;
 
     public static void main(String[] args) {
-        ingresarDatos();
+
         AppServidor servidor = new AppServidor();
+        usuario = servidor.ingresarDatos();
         servidor.conexion();
         
     }
 
-    private static void ingresarDatos() {
+    public Usuario ingresarDatos() {
         String nombre = "";
         System.out.println("Ingrese su nombre");
         Scanner scanner = new Scanner(System.in);
@@ -26,10 +25,10 @@ public class AppServidor implements Conexion{
         System.out.println("Ingresa tu numero de telefono");
         numTelefono = scanner.nextLine();
         usuario = new Usuario(nombre, numTelefono);
+        return usuario;
     }
-
+    @Override
     public void conexion() {
-
         try {
             socketServidor = new ServerSocket(1449);
         } catch (IOException e) {

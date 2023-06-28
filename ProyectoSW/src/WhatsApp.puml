@@ -95,10 +95,10 @@ class Llamada{
     +cambiarTipoDeLlamada(tipoLlamada: TipoLlamada): void
     +iniciarLlamada(): void
     +finalizarLlamada(): void
-    +prenderMicrofono():
-    +apagarMicrofono():
-    +prenderCamara():
-    +apagarCamara():
+    +prenderMicrofono(): void
+    +apagarMicrofono(): void
+    +prenderCamara(): void
+    +apagarCamara(): void
 }
 
 class Momento{

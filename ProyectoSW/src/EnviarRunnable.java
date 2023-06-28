@@ -24,11 +24,12 @@ public class EnviarRunnable implements Runnable {
 
         // Leer mensajes del usuario y enviarlos al servidor
         Scanner scanner = new Scanner(System.in);
+        Conversacion conversacion = new Conversacion(usuario);
         while (true) {
             String contenido= scanner.nextLine();
             Mensaje mensaje = new Mensaje(usuario, contenido);
+            conversacion.mensajes.add(mensaje);
             try {
-
                 dataOutputStream.writeUTF(mensaje.toString());
             } catch (IOException e) {
                 throw new RuntimeException(e);

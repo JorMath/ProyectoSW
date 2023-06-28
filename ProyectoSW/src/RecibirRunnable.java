@@ -21,13 +21,14 @@ class RecibirRunnable implements Runnable {
 
         // Leer mensajes del servidor y mostrarlos en la consola
         while (true) {
-            String message = null;
+                Object contenido = null;
             try {
-                message = dataInputStream.readUTF();
+                contenido = dataInputStream.readUTF();
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println(message);
+            System.out.println(contenido);
         }
     }
 }
