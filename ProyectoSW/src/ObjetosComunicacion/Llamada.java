@@ -1,5 +1,8 @@
+package ObjetosComunicacion;
+
 import java.util.ArrayList;
 import java.util.Date;
+import Usuario.Usuario;
 
 public class Llamada {
     public ArrayList<Usuario> usuarios = new ArrayList<>();

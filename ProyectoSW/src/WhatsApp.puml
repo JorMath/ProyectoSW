@@ -45,16 +45,16 @@ class Usuario{
     -nombre: String
     -numTelefono: String
     -usuariosAmigos: ArrayList<Usuario>
-    '-momentos: ArrayList<Momento>
+    '-momentos: ArrayList<ObjetosComunicacion.Momento>
     '-grupos: ArrayList<Group>
-    '-registroLlamadas: ArrayList<Llamada>
+    '-registroLlamadas: ArrayList<ObjetosComunicacion.Llamada>
     +Usuario(nombre:String , numTelefono: String): Usuario
     +agregarAmigo(usuario: Usuario): void
     +salirDeGrupo(grupo: Grupo): void
 }
 
 class Grupo{
-    '-usuarios: ArrayList<Usuario>
+    '-usuarios: ArrayList<Usuario.Usuario>
     -conversacion: Conversacion
     -fechaDeCreacion: Date
     +Grupo(usuario ... Usuario): Usuario
@@ -65,8 +65,8 @@ class Grupo{
 
 class Conversacion{
     -fechaInicio: Date
-    '-mensajes: ArrayList<Mensaje>
-    '-usuarios: ArrayList<Usuario>
+    '-mensajes: ArrayList<ObjetosComunicacion.Mensaje>
+    '-usuarios: ArrayList<Usuario.Usuario>
     +Conversacion(emisor: Usuario, receptor: Usuario): Conversacion
     +Conversacion(usuario ... Usuario): Conversacion
     +agregarUsuario(nuevoParticipante: Usuario): void
@@ -74,7 +74,7 @@ class Conversacion{
 
 }
 class Mensaje{
-    '-emisor: Usuario
+    '-emisor: Usuario.Usuario
     -contenido: Object
     -fechaInicio: Date
     +Mensaje(usuario: Usuario, contenido: Object)
@@ -148,7 +148,7 @@ Usuario "0..*"-->"+momentos" Momento
 Mensaje "1"-->"+emisor" Usuario
 
 Llamada "1"-->"+tipoLlamada" TipoLlamada
-'Usuario "0..*" -left-> "+contactos" Usuario
+'Usuario.Usuario "0..*" -left-> "+contactos" Usuario.Usuario
 
 Conversacion "0..*"-->"+participantes" Usuario
 

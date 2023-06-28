@@ -1,21 +1,24 @@
+package ObjetosComunicacion;
+
+import ObjetosComunicacion.Conversacion;
+import Usuario.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Conversacion {
-    private Date fechaInicio;
-    public ArrayList<Mensaje> mensajes = new ArrayList<>();
+public class Grupo {
     public ArrayList<Usuario> usuarios = new ArrayList<>();
-
-    public Conversacion(Usuario emisor, Usuario receptor){
-
+    private Date fechaCreacion;
+    public Conversacion conversacion;
+    public Grupo(Usuario...usuario){
     }
-    public Conversacion(Usuario usuario){
 
-    }
+
     public void agregarUsuario(Usuario nuevoParticipante){
 
     }
     public void eliminarUsuario(Usuario participante){
 
     }
+
+
 }

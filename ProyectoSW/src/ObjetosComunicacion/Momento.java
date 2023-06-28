@@ -1,3 +1,5 @@
+package ObjetosComunicacion;
+
 import java.util.Date;
 
 public class Momento {

@@ -1,10 +1,15 @@
+package Conexiones;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
+import Usuario.Usuario;
+import Usuario.Conexion;
+import Usuario.Registrarse;
 
 
-public class AppServidor implements Conexion, Registrarse{
+public class AppServidor implements Conexion, Registrarse {
     static ServerSocket socketServidor = null;
     static Usuario usuario;
 
@@ -40,7 +45,7 @@ public class AppServidor implements Conexion, Registrarse{
             try {
                 clientSocket = socketServidor.accept();
                 if (clientSocket.isConnected()) {
-                    System.out.println("Conexion exitosa");
+                    System.out.println("Usuario.Conexion exitosa");
                     Thread hiloEnviar = new Thread(new EnviarRunnable(clientSocket, usuario));
                     Thread hiloRecibir = new Thread(new RecibirRunnable(clientSocket));
 
