@@ -1,25 +1,29 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class AppCliente implements Conexion{
+
+class AppCliente implements Conexion, Registrarse{
     -socketCliente: Socket
     -usuario: Usuario
     +ingresarDatos(): void
     +conexion(): void
 }
 
-class AppServidor{
+class AppServidor implements Conexion, Registrarse{
     -socketServidor: ServerSocket
     -usuario: Usuario
     +conexion(): void
 }
 
+class Thread{}
+
+
 interface Conexion{
     conexion(): void
 }
 
-interface Registrarce(){
-    ingresarDatos(): void
+interface Registrarse{
+    ingresarDatos(): Usuario
 }
 
 
@@ -31,7 +35,7 @@ class EnviarRunnable implements Runnable{
     +EnviarRunnable(socket Socket, usuario Usuario): EnviarRunnable
 }
 
-class RecibirRunnable{
+class RecibirRunnable implements Runnable{
     -socket: Socket
     +run(): void
     +RecibirRunnable(socket Socket): RecibirRunnable
@@ -41,18 +45,19 @@ class Usuario{
     -nombre: String
     -numTelefono: String
     -usuariosAmigos: ArrayList<Usuario>
-    -momentos: ArrayList<Momento>
-    -grupos: ArrayList<Group>
-    -registroLlamadas: ArrayList<Llamada>
+    '-momentos: ArrayList<ObjetosComunicacion.Momento>
+    '-grupos: ArrayList<Group>
+    '-registroLlamadas: ArrayList<ObjetosComunicacion.Llamada>
     +Usuario(nombre:String , numTelefono: String): Usuario
     +agregarAmigo(usuario: Usuario): void
     +salirDeGrupo(grupo: Grupo): void
 }
 
 class Grupo{
-    -usuarios: ArrayList<Usuario>
+    '-usuarios: ArrayList<Usuario.Usuario>
     -conversacion: Conversacion
     -fechaDeCreacion: Date
+    +Grupo(usuario ... Usuario): Usuario
     +agregarUsuario(nuevoParticipante: Usuario): void
     +eliminarUsuario(participante: Usuario): void
 
@@ -60,8 +65,8 @@ class Grupo{
 
 class Conversacion{
     -fechaInicio: Date
-    -mensajes: ArrayList<Mensaje>
-    -usuarios: ArrayList<Usuario>
+    '-mensajes: ArrayList<ObjetosComunicacion.Mensaje>
+    '-usuarios: ArrayList<Usuario.Usuario>
     +Conversacion(emisor: Usuario, receptor: Usuario): Conversacion
     +Conversacion(usuario ... Usuario): Conversacion
     +agregarUsuario(nuevoParticipante: Usuario): void
@@ -69,7 +74,7 @@ class Conversacion{
 
 }
 class Mensaje{
-    -usuario: Usuario
+    '-emisor: Usuario.Usuario
     -contenido: Object
     -fechaInicio: Date
     +Mensaje(usuario: Usuario, contenido: Object)
@@ -83,16 +88,17 @@ class Llamada{
     -fechaInicio: Date
     -fechaFinalizacion: Date
     -duracion: float
+    -tipoLlamada: TipoLlamada
     -calcularDuracion(): float
     +Llamada(emisor: Usuario, receptor: Usuario, tipoLlamada: TipoLlamada): Llamada
     +agregarUsuario(nuevoParticipante: Usuario): void
     +cambiarTipoDeLlamada(tipoLlamada: TipoLlamada): void
     +iniciarLlamada(): void
     +finalizarLlamada(): void
-    +prenderMicrofono():
-    +apagarMicrofono():
-    +prenderCamara():
-    +apagarCamara():
+    +prenderMicrofono(): void
+    +apagarMicrofono(): void
+    +prenderCamara(): void
+    +apagarCamara(): void
 }
 
 class Momento{
@@ -106,11 +112,45 @@ class Momento{
     +modificarMomento(): void
 }
 
-Usuario --> Conversacion
-Llamada --> Usuario
-Usuario --> Llamada
-Conversacion --> Mensaje
-AppServidor -->
+enum TipoLlamada{
+    AUDIO,
+    VIDEO_LLAMADA
+}
+
+
+
+
+Usuario "0..*"-->"+conversaciones" Conversacion
+Usuario "0..*"-->"+registroDeLlamadas" Llamada
+Usuario "0..*"-right->"+participaEnGrupo" Grupo
+AppCliente "1"-->"usuario" Usuario
+AppServidor "1"-->"usuario" Usuario
+
+
+
+Llamada "0..*"-->"+participantes" Usuario
+
+Conversacion "0..*"-->"+mensajes" Mensaje
+
+
+AppCliente "1"-left->"+hiloRecibir" Thread
+AppCliente "1"-->"+hiloEnviar" Thread
+
+AppServidor "1"-right->"+hiloRecibir" Thread
+AppServidor "1"-->"+hiloEnviar" Thread
+
+Thread --->"+enviar" EnviarRunnable
+Thread --->"+recibir" RecibirRunnable
+
+
+Grupo "0..*"-->"+participantes" Usuario
+Usuario "0..*"-->"+momentos" Momento
+Mensaje "1"-->"+emisor" Usuario
+
+Llamada "1"-->"+tipoLlamada" TipoLlamada
+'Usuario.Usuario "0..*" -left-> "+contactos" Usuario.Usuario
+
+Conversacion "0..*"-->"+participantes" Usuario
 
 
 @enduml

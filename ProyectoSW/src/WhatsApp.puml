@@ -151,6 +151,5 @@ Llamada "1"-->"+tipoLlamada" TipoLlamada
 'Usuario.Usuario "0..*" -left-> "+contactos" Usuario.Usuario
 
 Conversacion "0..*"-->"+participantes" Usuario
-
-
+Usuario "0..*"-->"+usuariosAmigos" Usuario
 @enduml

@@ -1,5 +1,5 @@
 package Usuario;
 
 public interface Conexion {
-    public void conexion();
+    public void conectarse();
 }

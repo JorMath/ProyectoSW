@@ -5,15 +5,15 @@ import java.util.Date;
 import Usuario.Usuario;
 
 public class Llamada {
-    public ArrayList<Usuario> usuarios = new ArrayList<>();
+    public ArrayList<Usuario> participantes = new ArrayList<>();
     private Date fechaInicio;
     private Date fechaFinalizacion;
     private float duracion;
     public TipoLlamada tipoLlamada;
 
     public Llamada(Usuario emisor, Usuario receptor, TipoLlamada tipoLlamada){
-        this.usuarios.add(emisor);
-        this.usuarios.add(receptor);
+        this.participantes.add(emisor);
+        this.participantes.add(receptor);
         this.tipoLlamada = tipoLlamada;
     }
     public float calcularDuracion(){

@@ -17,7 +17,7 @@ public class AppServidor implements Conexion, Registrarse {
 
         AppServidor servidor = new AppServidor();
         usuario = servidor.ingresarDatos();
-        servidor.conexion();
+        servidor.conectarse();
         
     }
 
@@ -33,7 +33,7 @@ public class AppServidor implements Conexion, Registrarse {
         return usuario;
     }
     @Override
-    public void conexion() {
+    public void conectarse() {
         try {
             socketServidor = new ServerSocket(1449);
         } catch (IOException e) {

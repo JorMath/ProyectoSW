@@ -17,7 +17,7 @@ public class AppCliente implements Conexion, Registrarse {
 
     public static void main(String[] args) {
         AppCliente cliente = new AppCliente();
-        cliente.conexion();
+        cliente.conectarse();
     }
     @Override
     public Usuario ingresarDatos(){
@@ -32,7 +32,7 @@ public class AppCliente implements Conexion, Registrarse {
         return usuario;
     }
     @Override
-    public void conexion(){
+    public void conectarse(){
         AppCliente cliente = new AppCliente();
         usuario = cliente.ingresarDatos();
         try {

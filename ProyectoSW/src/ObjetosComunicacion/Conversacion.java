@@ -6,7 +6,7 @@ import java.util.Date;
 public class Conversacion {
     private Date fechaInicio;
     public ArrayList<Mensaje> mensajes = new ArrayList<>();
-    public ArrayList<Usuario> usuarios = new ArrayList<>();
+    public ArrayList<Usuario> participantes = new ArrayList<>();
 
     public Conversacion(Usuario emisor, Usuario receptor){
 

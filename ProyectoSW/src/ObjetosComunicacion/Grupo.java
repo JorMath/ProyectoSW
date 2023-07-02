@@ -1,12 +1,11 @@
 package ObjetosComunicacion;
 
-import ObjetosComunicacion.Conversacion;
 import Usuario.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Grupo {
-    public ArrayList<Usuario> usuarios = new ArrayList<>();
+    public ArrayList<Usuario> participantes = new ArrayList<>();
     private Date fechaCreacion;
     public Conversacion conversacion;
     public Grupo(Usuario...usuario){

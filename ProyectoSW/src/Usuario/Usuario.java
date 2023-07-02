@@ -13,8 +13,8 @@ public class Usuario {
     private String numTelefono;
     public ArrayList<Usuario> usuariosAmigos = new ArrayList<>();
     public ArrayList<Momento> momentos = new ArrayList<Momento>();
-    public ArrayList<Grupo> grupos = new ArrayList<>();
-    public ArrayList<Llamada> registroLlamadas = new ArrayList<Llamada>();
+    public ArrayList<Grupo> participaEnGrupo = new ArrayList<>();
+    public ArrayList<Llamada> registroDeLlamadas = new ArrayList<Llamada>();
    // public ArrayList<ObjetosComunicacion.Grupo> grupos = new ArrayList<>();
 
     public Usuario(String nombre, String numTelefono) {
