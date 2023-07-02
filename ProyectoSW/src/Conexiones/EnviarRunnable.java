@@ -1,7 +1,7 @@
 package Conexiones;
 import Usuario.Usuario;
-import ObjetosComunicacion.Conversacion;
-import ObjetosComunicacion.Mensaje;
+import Usuario.ObjetosComunicacion.Conversacion;
+import Usuario.ObjetosComunicacion.Mensaje;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

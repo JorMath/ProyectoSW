@@ -1,4 +1,4 @@
-package ObjetosComunicacion;
+package Usuario.ObjetosComunicacion;
 import java.util.Date;
 import Usuario.Usuario;
 

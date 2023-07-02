@@ -1,8 +1,8 @@
 package Usuario;
 
-import ObjetosComunicacion.Grupo;
-import ObjetosComunicacion.Llamada;
-import ObjetosComunicacion.Momento;
+import Usuario.ObjetosComunicacion.Grupo;
+import Usuario.ObjetosComunicacion.Llamada;
+import Usuario.ObjetosComunicacion.Momento;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +15,7 @@ public class Usuario {
     public ArrayList<Momento> momentos = new ArrayList<Momento>();
     public ArrayList<Grupo> participaEnGrupo = new ArrayList<>();
     public ArrayList<Llamada> registroDeLlamadas = new ArrayList<Llamada>();
-   // public ArrayList<ObjetosComunicacion.Grupo> grupos = new ArrayList<>();
+   // public ArrayList<Usuario.ObjetosComunicacion.Grupo> grupos = new ArrayList<>();
 
     public Usuario(String nombre, String numTelefono) {
         this.nombre = nombre;

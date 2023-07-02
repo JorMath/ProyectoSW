@@ -1,4 +1,4 @@
-package ObjetosComunicacion;
+package Usuario.ObjetosComunicacion;
 import Usuario.Usuario;
 import java.util.ArrayList;
 import java.util.Date;

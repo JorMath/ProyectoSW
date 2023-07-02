@@ -1,4 +1,4 @@
-package ObjetosComunicacion;
+package Usuario.ObjetosComunicacion;
 
 public enum TipoLlamada {
     AUDIO,

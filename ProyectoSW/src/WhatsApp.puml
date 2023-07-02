@@ -45,9 +45,9 @@ class Usuario{
     -nombre: String
     -numTelefono: String
     -usuariosAmigos: ArrayList<Usuario>
-    '-momentos: ArrayList<ObjetosComunicacion.Momento>
+    '-momentos: ArrayList<Usuario.ObjetosComunicacion.Momento>
     '-grupos: ArrayList<Group>
-    '-registroLlamadas: ArrayList<ObjetosComunicacion.Llamada>
+    '-registroLlamadas: ArrayList<Usuario.ObjetosComunicacion.Llamada>
     +Usuario(nombre:String , numTelefono: String): Usuario
     +agregarAmigo(usuario: Usuario): void
     +salirDeGrupo(grupo: Grupo): void
@@ -65,7 +65,7 @@ class Grupo{
 
 class Conversacion{
     -fechaInicio: Date
-    '-mensajes: ArrayList<ObjetosComunicacion.Mensaje>
+    '-mensajes: ArrayList<Usuario.ObjetosComunicacion.Mensaje>
     '-usuarios: ArrayList<Usuario.Usuario>
     +Conversacion(emisor: Usuario, receptor: Usuario): Conversacion
     +Conversacion(usuario ... Usuario): Conversacion
